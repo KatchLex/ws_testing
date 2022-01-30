@@ -14,8 +14,24 @@ describe('Calculate users', () => {
             response = await sendRequest(data);
         });
 
-        it('Array of 10 users should be returned in response' , () => {
-            expect(Object.entries(response).length).to.eql(10);
+        it('Status code is "200 - Success"' , async () => {
+            expect(response.statusCode).to.eql(200);
+        });
+
+        it('Content-type header exists in response' , async () => {
+            expect(response.rawHeaders).to.include('Content-Type');
+        });
+
+        it('Content-type header is "application/json; charset=utf-8"' , async () => {
+            expect(response.rawHeaders).to.include('application/json; charset=utf-8');
+        });
+
+        it('Response is an Array' , async () => {
+            expect(Array.isArray(response.body)).be.true
+        });
+
+        it('10 users are returned in the response' , async () => {
+            expect(response.body.length).to.eql(10);
         });
     })
 });

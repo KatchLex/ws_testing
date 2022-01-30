@@ -8,7 +8,3 @@ git
 ## Install project
 
 npm i
-
-## Run tests
-
-npm t
